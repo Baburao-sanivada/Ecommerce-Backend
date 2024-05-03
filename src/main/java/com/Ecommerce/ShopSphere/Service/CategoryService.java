@@ -34,4 +34,8 @@ public class CategoryService {
     public boolean findById(int categoryId){
         return categoryRepo.findById(categoryId).isPresent();
     }
+
+    public void deleteCategory(int categoryId){
+        categoryRepo.deleteById(categoryId);
+    }
 }
