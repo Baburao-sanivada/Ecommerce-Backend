@@ -29,6 +29,7 @@ public class ProductService {
     }
     public ProductDto getProductDto(Product product){
         ProductDto productDto = new ProductDto();
+        productDto.setId(product.getId());
         productDto.setName(product.getProductName());
         productDto.setDescription(product.getDescription());
         productDto.setImageURL(product.getImageUrl());
@@ -43,5 +44,13 @@ public class ProductService {
             response.add(getProductDto(product));
         }
         return response;
+    }
+    public void updateProduct(ProductDto productDto,Integer productId) {
+        Product product = productRepo.getReferenceById(productId);
+        product.setProductName(productDto.getName());
+        product.setDescription(productDto.getDescription());
+        product.setImageUrl(productDto.getImageURL());
+        product.setPrice(productDto.getPrice());
+        productRepo.save(product);
     }
 }

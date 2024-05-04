@@ -3,7 +3,7 @@ package com.Ecommerce.ShopSphere.DTO;
 import jakarta.validation.constraints.NotBlank;
 
 public class ProductDto {
-    
+    private Integer id;
     @NotBlank(message = "product name is mandatory")
     private String name;
      @NotBlank(message = "product Image is mandatory")
@@ -18,7 +18,13 @@ public class ProductDto {
     public ProductDto(){
 
     }
-    
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }
