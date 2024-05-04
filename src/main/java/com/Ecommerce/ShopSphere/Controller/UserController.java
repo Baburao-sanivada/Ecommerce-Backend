@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Ecommerce.ShopSphere.Common.ApiResponse;
+import com.Ecommerce.ShopSphere.DTO.User.SignInDto;
+import com.Ecommerce.ShopSphere.DTO.User.SignInResponseDto;
 import com.Ecommerce.ShopSphere.DTO.User.UserDto;
 import com.Ecommerce.ShopSphere.Service.UserService;
 
@@ -20,10 +22,16 @@ public class UserController {
     UserService userService;
 
     //SignUp
-
-    //SignUp
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse> signUpUser(@RequestBody UserDto userDto){
         return userService.addNewUser(userDto);
     } 
+
+    //SignIn
+    @PostMapping("/signin")
+    public SignInResponseDto postMethodName(@RequestBody SignInDto signInDto) {
+        return userService.signin(signInDto);
+    }
+    
+
 }
