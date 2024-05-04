@@ -1,12 +1,13 @@
 package com.Ecommerce.ShopSphere.Repository;
 
-import com.Ecommerce.ShopSphere.Model.User;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.Ecommerce.ShopSphere.Model.AuthenticationToken;
+
 
 @Repository
-public interface UserRepo extends JpaRepository<User,Integer> {
-    User findByEmail(String email);
-}
+public interface TokenRepo extends JpaRepository<AuthenticationToken,Integer> {
+
+    
+} 
