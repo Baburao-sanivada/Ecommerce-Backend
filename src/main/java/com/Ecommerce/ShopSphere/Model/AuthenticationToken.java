@@ -1,6 +1,7 @@
 package com.Ecommerce.ShopSphere.Model;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.UUID;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -56,6 +57,12 @@ public class AuthenticationToken {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public AuthenticationToken(User user) {
+        this.user = user;
+        this.dateCreated = new Date();
+        this.token = UUID.randomUUID().toString();
     }
 
 }
