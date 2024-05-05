@@ -2,12 +2,15 @@ package com.Ecommerce.ShopSphere.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.Ecommerce.ShopSphere.DTO.ProductDto;
+import com.Ecommerce.ShopSphere.Exceptions.InvalidProductException;
 import com.Ecommerce.ShopSphere.Model.Category;
 import com.Ecommerce.ShopSphere.Model.Product;
 import com.Ecommerce.ShopSphere.Repository.ProductRepo;
@@ -52,5 +55,12 @@ public class ProductService {
         product.setImageUrl(productDto.getImageURL());
         product.setPrice(productDto.getPrice());
         productRepo.save(product);
+    }
+    public Product getProductById(Integer productId) {
+        Optional<Product> product = productRepo.findById(productId);
+        if(product.isEmpty()){
+            throw new InvalidProductException("There is no product with Product Id :"+productId);
+        }
+        return product.get();
     }
 }

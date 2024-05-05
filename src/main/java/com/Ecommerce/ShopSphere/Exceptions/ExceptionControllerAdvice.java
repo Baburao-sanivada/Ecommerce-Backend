@@ -17,5 +17,10 @@ public class ExceptionControllerAdvice {
     public final ResponseEntity<String> handleAuthenticationFailed(AuthenticationFailedExcep excep){
         return new ResponseEntity<>(excep.getMessage(),HttpStatus.FORBIDDEN);
     }
+
+    @ExceptionHandler(value = InvalidProductException.class)
+    public final ResponseEntity<String> handleInvalidProduct(AuthenticationFailedExcep excep){
+        return new ResponseEntity<>(excep.getMessage(),HttpStatus.FORBIDDEN);
+    }
     
 }
