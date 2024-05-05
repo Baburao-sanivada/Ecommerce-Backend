@@ -4,8 +4,8 @@ import com.Ecommerce.ShopSphere.Model.Product;
 
 public class CartDto {
     private Integer id;
-    private Product product;
     private Integer quantity;
+    private Product product;
     public Integer getId() {
         return id;
     }
@@ -24,4 +24,12 @@ public class CartDto {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+    public CartDto() {
+    }
+    public CartDto(Integer id, Product product, Integer quantity) {
+        this.id = id;
+        this.product = product;
+        this.quantity = quantity;
+    }
+    
 }
