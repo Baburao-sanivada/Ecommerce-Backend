@@ -19,7 +19,12 @@ public class ExceptionControllerAdvice {
     }
 
     @ExceptionHandler(value = InvalidProductException.class)
-    public final ResponseEntity<String> handleInvalidProduct(AuthenticationFailedExcep excep){
+    public final ResponseEntity<String> handleInvalidProduct(InvalidProductException excep){
+        return new ResponseEntity<>(excep.getMessage(),HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(value = InvalidCartId.class)
+    public final ResponseEntity<String> handleInvalidCartId(InvalidCartId excep){
         return new ResponseEntity<>(excep.getMessage(),HttpStatus.FORBIDDEN);
     }
     
