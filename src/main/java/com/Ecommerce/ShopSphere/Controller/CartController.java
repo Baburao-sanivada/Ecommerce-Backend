@@ -5,8 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.service.annotation.DeleteExchange;
-
 import com.Ecommerce.ShopSphere.Common.ApiResponse;
 import com.Ecommerce.ShopSphere.DTO.Cart.AddToCartDto;
 import com.Ecommerce.ShopSphere.DTO.Cart.CartItemsResponse;
@@ -59,11 +57,13 @@ public class CartController {
     
     //delete cart item
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<ApiResponse> deleteCartItem(@RequestHeader("token") String token,@PathVariable("id") Integer id){
+    public ResponseEntity<ApiResponse> deleteCartItem(@RequestHeader("token") String token,@PathVariable("id") Integer cartItemId){
         //Validate user
         tokenService.authenticateUser(token);
+        //Get the user
+        User user = tokenService.getUserWithToken(token);
         
-        cartService.deleteCartItem(id);
+        cartService.deleteCartItem(cartItemId,user);
         return new ResponseEntity<>(new ApiResponse(true, "Successfully deleted the item"),HttpStatus.OK);
     }
 
