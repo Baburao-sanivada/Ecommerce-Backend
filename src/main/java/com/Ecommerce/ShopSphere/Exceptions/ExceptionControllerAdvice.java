@@ -17,5 +17,15 @@ public class ExceptionControllerAdvice {
     public final ResponseEntity<String> handleAuthenticationFailed(AuthenticationFailedExcep excep){
         return new ResponseEntity<>(excep.getMessage(),HttpStatus.FORBIDDEN);
     }
+
+    @ExceptionHandler(value = InvalidProductException.class)
+    public final ResponseEntity<String> handleInvalidProduct(InvalidProductException excep){
+        return new ResponseEntity<>(excep.getMessage(),HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(value = InvalidCartId.class)
+    public final ResponseEntity<String> handleInvalidCartId(InvalidCartId excep){
+        return new ResponseEntity<>(excep.getMessage(),HttpStatus.FORBIDDEN);
+    }
     
 }
