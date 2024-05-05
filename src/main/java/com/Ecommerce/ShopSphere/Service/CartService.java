@@ -2,6 +2,7 @@ package com.Ecommerce.ShopSphere.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.Ecommerce.ShopSphere.DTO.Cart.AddToCartDto;
 import com.Ecommerce.ShopSphere.DTO.Cart.CartDto;
 import com.Ecommerce.ShopSphere.DTO.Cart.CartItemsResponse;
+import com.Ecommerce.ShopSphere.Exceptions.InvalidCartId;
 import com.Ecommerce.ShopSphere.Model.Cart;
 import com.Ecommerce.ShopSphere.Model.Product;
 import com.Ecommerce.ShopSphere.Model.User;
@@ -44,6 +46,14 @@ public class CartService {
 
         CartItemsResponse cartItemResponse = new CartItemsResponse(cartDtos, price);
         return cartItemResponse;
+    }
+
+    public void deleteCartItem(Integer cartId) {
+        Optional<Cart> cartItem = cartRepo.findById(cartId);
+        if(cartItem.isEmpty()){
+            throw new InvalidCartId("There is no cart item present with id: "+cartId);
+        }
+        cartRepo.deleteById(cartId);
     }
 
 }
